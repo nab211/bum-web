@@ -1,434 +1,158 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>BUM WEB</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        body {
-            background: #080808;
-            color: white;
-            min-height: 100vh;
-        }
-
-        /* ===== NAVBAR ===== */
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 8%;
-
-            background: rgba(8, 8, 8, 0.85);
-            backdrop-filter: blur(12px);
-
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 25px;
-            font-weight: bold;
-            color: #00eaff;
-        }
-
-        .menu {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .menu a {
-            color: #ddd;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .menu a:hover {
-            color: #00eaff;
-        }
-
-        /* ===== HERO ===== */
-
-        .hero {
-            min-height: 100vh;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            text-align: center;
-
-            padding: 100px 20px 50px;
-
-            background:
-                radial-gradient(circle at 50% 20%, rgba(0,234,255,0.15), transparent 35%),
-                #080808;
-        }
-
-        .hero h1 {
-            font-size: clamp(45px, 8vw, 90px);
-            margin-bottom: 15px;
-
-            background: linear-gradient(90deg, #00eaff, #7c3cff);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            color: #aaa;
-            font-size: 18px;
-            max-width: 650px;
-            line-height: 1.6;
-        }
-
-        .hero-button {
-            margin-top: 30px;
-
-            padding: 14px 30px;
-
-            border: none;
-            border-radius: 10px;
-
-            background: linear-gradient(90deg, #00eaff, #7c3cff);
-            color: white;
-
-            font-size: 16px;
-            font-weight: bold;
-
-            cursor: pointer;
-
-            transition: 0.3s;
-        }
-
-        .hero-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 35px rgba(0,234,255,0.25);
-        }
-
-        /* ===== SECTION ===== */
-
-        section {
-            padding: 100px 8%;
-        }
-
-        .title {
-            text-align: center;
-            font-size: 35px;
-            margin-bottom: 50px;
-        }
-
-        /* ===== CARDS ===== */
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: #111;
-
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 18px;
-
-            padding: 30px;
-
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-
-            border-color: #00eaff;
-
-            box-shadow:
-                0 10px 40px rgba(0,234,255,0.08);
-        }
-
-        .card-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            color: #999;
-            line-height: 1.5;
-        }
-
-        /* ===== ABOUT ===== */
-
-        .about {
-            max-width: 800px;
-            margin: auto;
-
-            text-align: center;
-
-            color: #aaa;
-            line-height: 1.8;
-        }
-
-        /* ===== CONTACT ===== */
-
-        .contact {
-            text-align: center;
-        }
-
-        .contact-button {
-            display: inline-block;
-
-            margin-top: 25px;
-
-            padding: 13px 28px;
-
-            background: #5865F2;
-            color: white;
-
-            text-decoration: none;
-
-            border-radius: 10px;
-
-            transition: 0.3s;
-        }
-
-        .contact-button:hover {
-            transform: scale(1.05);
-        }
-
-        /* ===== FOOTER ===== */
-
-        footer {
-            text-align: center;
-
-            padding: 30px;
-
-            border-top: 1px solid rgba(255,255,255,0.08);
-
-            color: #666;
-        }
-
-        /* ===== MOBILE ===== */
-
-        @media (max-width: 600px) {
-
-            nav {
-                padding: 0 5%;
-            }
-
-            .menu {
-                gap: 12px;
-            }
-
-            .menu a {
-                font-size: 13px;
-            }
-
-            section {
-                padding: 80px 5%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUM WEB</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#07080d;color:#f5f7ff;line-height:1.6}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+.nav{position:fixed;top:0;left:0;right:0;height:70px;background:rgba(7,8,13,.82);backdrop-filter:blur(14px);border-bottom:1px solid #202331;z-index:20}
+.nav-inner{max-width:1180px;height:100%;margin:auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:25px;font-weight:900;color:#5ee7ff}
+.links{display:flex;gap:25px;list-style:none}
+.links a{color:#b8bdcc;transition:.2s}
+.links a:hover{color:#5ee7ff}
+.menu-btn{display:none;background:none;border:0;color:white;font-size:27px}
+.hero{min-height:100vh;padding:150px 20px 90px;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 25%,rgba(0,220,255,.16),transparent 32%),radial-gradient(circle at 20% 80%,rgba(124,60,255,.12),transparent 30%)}
+.hero-box{max-width:900px}
+.badge{display:inline-block;padding:7px 14px;border:1px solid #263342;border-radius:999px;color:#8eefff;background:#0c1820;margin-bottom:22px}
+.hero h1{font-size:clamp(50px,9vw,100px);line-height:1;background:linear-gradient(90deg,#5ee7ff,#8c62ff,#5ee7ff);background-size:200%;-webkit-background-clip:text;color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{to{background-position:200%}}
+.hero p{max-width:680px;margin:25px auto;color:#9ca3b4;font-size:18px}
+.btn{display:inline-block;border:0;border-radius:12px;padding:13px 22px;cursor:pointer;font-weight:800;transition:.2s}
+.btn-primary{background:linear-gradient(90deg,#00cfee,#7757ff);color:white}
+.btn-secondary{background:#151824;border:1px solid #292f40;color:#dce1ef;margin-left:10px}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,220,255,.12)}
+.section{max-width:1180px;margin:auto;padding:95px 20px}
+.section-title{text-align:center;margin-bottom:45px}
+.section-title h2{font-size:38px}
+.section-title p{color:#8e95a7;margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:linear-gradient(180deg,#11141d,#0d0f16);border:1px solid #222735;border-radius:18px;padding:25px;transition:.25s}
+.card:hover{transform:translateY(-7px);border-color:#3ddcf6;box-shadow:0 15px 45px rgba(0,0,0,.25)}
+.icon{font-size:38px;margin-bottom:14px}
+.card h3{margin-bottom:7px}.muted{color:#8f96a8}
+.price{font-size:25px;font-weight:900;margin:17px 0;color:#65eaff}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.stat{padding:28px;border-radius:18px;background:#10131b;border:1px solid #222735;text-align:center}
+.stat b{font-size:34px;display:block;color:#65eaff}
+.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.product{position:relative}
+.product .tag{position:absolute;right:18px;top:18px;background:#192b32;color:#6beaff;border:1px solid #28505a;border-radius:999px;padding:4px 9px;font-size:12px}
+.actions{display:flex;gap:9px;margin-top:18px}.actions .btn{flex:1}
+.about{max-width:800px;margin:auto;text-align:center;color:#a2a8b8;font-size:17px}
+.contact{text-align:center;background:linear-gradient(135deg,#0e1920,#12101d);border:1px solid #252b3b;border-radius:24px;padding:55px 25px}
+footer{border-top:1px solid #202331;color:#707789;text-align:center;padding:28px 20px}
+.toast{position:fixed;right:20px;bottom:20px;background:#151a24;border:1px solid #344052;border-radius:12px;padding:14px 18px;transform:translateY(130px);opacity:0;transition:.3s;z-index:50}
+.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:850px){
+.grid{grid-template-columns:repeat(2,1fr)}.shop-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr}
+.links{display:none;position:absolute;top:70px;left:0;right:0;background:#0b0d13;padding:20px;flex-direction:column;gap:15px;border-bottom:1px solid #222735}
+.links.open{display:flex}.menu-btn{display:block}
+}
+@media(max-width:560px){
+.grid,.shop-grid{grid-template-columns:1fr}.hero h1{font-size:58px}.btn{width:100%;margin:7px 0!important}
+.section{padding:75px 16px}
+}
+</style>
 </head>
-
 <body>
 
-    <!-- NAVBAR -->
-
-    <nav>
-
-        <div class="logo">
-            BUM
-        </div>
-
-        <ul class="menu">
-            <li><a href="#home">Trang chủ</a></li>
-            <li><a href="#shop">Sản phẩm</a></li>
-            <li><a href="#about">Giới thiệu</a></li>
-            <li><a href="#contact">Liên hệ</a></li>
-        </ul>
-
-    </nav>
-
-
-    <!-- HERO -->
-
-    <section class="hero" id="home">
-
-        <h1>BUM WEB</h1>
-
-        <p>
-            Chào mừng đến với website của Bum.
-            Một góc nhỏ để giới thiệu sản phẩm,
-            dịch vụ và những thứ linh tinh mà con người thích xây trên Internet.
-        </p>
-
-        <button class="hero-button"
-                onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
-
-            Xem sản phẩm
-
-        </button>
-
-    </section>
-
-
-    <!-- SHOP -->
-
-    <section id="shop">
-
-        <h2 class="title">
-            🛒 Sản phẩm
-        </h2>
-
-        <div class="cards">
-
-            <div class="card">
-
-                <div class="card-icon">☁️</div>
-
-                <h3>Cloud</h3>
-
-                <p>
-                    Dịch vụ cloud tiện lợi,
-                    phù hợp cho nhu cầu sử dụng máy chủ và ứng dụng.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">🤖</div>
-
-                <h3>Discord Bot</h3>
-
-                <p>
-                    Bot Discord với nhiều tính năng
-                    quản lý và tiện ích cho server.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">💰</div>
-
-                <h3>BXU</h3>
-
-                <p>
-                    Hệ thống điểm riêng của BUM.
-                    Sau này có thể phát triển thành hệ thống shop.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">🎮</div>
-
-                <h3>Gaming</h3>
-
-                <p>
-                    Những thứ liên quan đến game,
-                    cộng đồng và các dự án gaming.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ABOUT -->
-
-    <section id="about">
-
-        <h2 class="title">
-            👋 Về BUM
-        </h2>
-
-        <div class="about">
-
-            <p>
-                Đây là website cá nhân của BUM.
-                Website được xây dựng để giới thiệu
-                các dự án, sản phẩm và những thứ đang phát triển.
-            </p>
-
-            <br>
-
-            <p>
-                Website hiện đang ở phiên bản đầu tiên.
-                Sau này có thể thêm tài khoản, shop,
-                BXU, hệ thống đơn hàng và nhiều tính năng khác.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- CONTACT -->
-
-    <section id="contact">
-
-        <div class="contact">
-
-            <h2 class="title">
-                📩 Liên hệ
-            </h2>
-
-            <p>
-                Muốn liên hệ hoặc tham gia cộng đồng?
-            </p>
-
-            <a
-                class="contact-button"
-                href="#"
-                onclick="alert('Discord sẽ được thêm sau!')"
-            >
-                Discord
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        © 2026 BUM WEB • Made with 🗿
-
-    </footer>
-
+<nav class="nav">
+<div class="nav-inner">
+<a class="logo" href="#home">BUM</a>
+<ul class="links" id="links">
+<li><a href="#home">Trang chủ</a></li>
+<li><a href="#shop">Shop</a></li>
+<li><a href="#services">Dịch vụ</a></li>
+<li><a href="#account">Tài khoản</a></li>
+<li><a href="#contact">Liên hệ</a></li>
+</ul>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+</div>
+</nav>
+
+<section class="hero" id="home">
+<div class="hero-box">
+<div class="badge">🚀 BUM WEB • VERSION 1.0</div>
+<h1>BUM WEB</h1>
+<p>Website trung tâm của BUM, nơi gom shop, dịch vụ, cộng đồng và những dự án đang được xây dựng.</p>
+<a class="btn btn-primary" href="#shop">🛒 Khám phá shop</a>
+<a class="btn btn-secondary" href="#services">⚡ Xem dịch vụ</a>
+</div>
+</section>
+
+<section class="section" id="shop">
+<div class="section-title"><h2>🛒 BUM SHOP</h2><p>Sản phẩm demo, sau này có thể nối database và thanh toán thật.</p></div>
+<div class="shop-grid">
+<div class="card product"><span class="tag">HOT</span><div class="icon">☁️</div><h3>Cloud Trial</h3><p class="muted">Gói cloud dùng thử.</p><div class="price">500 BXU</div><button class="btn btn-primary" onclick="buy('Cloud Trial')">Mua ngay</button></div>
+<div class="card product"><div class="icon">🤖</div><h3>Discord Bot</h3><p class="muted">Bot quản lý và tiện ích cho server.</p><div class="price">1.000 BXU</div><button class="btn btn-primary" onclick="buy('Discord Bot')">Mua ngay</button></div>
+<div class="card product"><span class="tag">NEW</span><div class="icon">🎮</div><h3>Gaming Pack</h3><p class="muted">Gói dịch vụ gaming demo.</p><div class="price">750 BXU</div><button class="btn btn-primary" onclick="buy('Gaming Pack')">Mua ngay</button></div>
+</div>
+</section>
+
+<section class="section" id="services">
+<div class="section-title"><h2>⚡ Dịch vụ</h2><p>Những thứ BUM đang hướng tới.</p></div>
+<div class="grid">
+<div class="card"><div class="icon">☁️</div><h3>Cloud</h3><p class="muted">Quản lý các gói cloud và máy ảo.</p></div>
+<div class="card"><div class="icon">🤖</div><h3>Discord</h3><p class="muted">Bot, server và hệ thống cộng đồng.</p></div>
+<div class="card"><div class="icon">💰</div><h3>BXU</h3><p class="muted">Hệ thống tiền tệ riêng cho website.</p></div>
+<div class="card"><div class="icon">🎮</div><h3>Gaming</h3><p class="muted">Các dự án và dịch vụ liên quan đến game.</p></div>
+</div>
+</section>
+
+<section class="section" id="account">
+<div class="section-title"><h2>👤 Tài khoản</h2><p>Khu vực tài khoản demo.</p></div>
+<div class="stats">
+<div class="stat"><b>1,250</b><span class="muted">BXU</span></div>
+<div class="stat"><b>12</b><span class="muted">Đơn hàng</span></div>
+<div class="stat"><b>Lv. 7</b><span class="muted">Cấp độ</span></div>
+</div>
+<div style="text-align:center;margin-top:25px"><button class="btn btn-primary" onclick="notify('Tính năng đăng nhập đang được phát triển 🛠️')">Đăng nhập</button></div>
+</section>
+
+<section class="section">
+<div class="section-title"><h2>📊 BUM STATS</h2><p>Thông tin tổng quan demo.</p></div>
+<div class="grid">
+<div class="card"><h3>👥 Thành viên</h3><p class="price">1,024+</p><p class="muted">Cộng đồng đang phát triển.</p></div>
+<div class="card"><h3>📦 Đơn hàng</h3><p class="price">3,280+</p><p class="muted">Dữ liệu minh họa.</p></div>
+<div class="card"><h3>🤖 Bot</h3><p class="price">24/7</p><p class="muted">Mục tiêu hoạt động ổn định.</p></div>
+<div class="card"><h3>⭐ Uptime</h3><p class="price">99.9%</p><p class="muted">Chỉ là số demo hiện tại.</p></div>
+</div>
+</section>
+
+<section class="section" id="about">
+<div class="section-title"><h2>👋 Về BUM</h2></div>
+<div class="about">
+<p>BUM WEB là giao diện trung tâm cho các dự án, shop và cộng đồng của BUM. Đây là bản frontend demo, chưa kết nối hệ thống backend.</p>
+<br>
+<p>Sau này có thể bổ sung đăng nhập, database, BXU thật, lịch sử giao dịch, quản lý đơn hàng và trang quản trị.</p>
+</div>
+</section>
+
+<section class="section" id="contact">
+<div class="contact">
+<div class="section-title" style="margin-bottom:20px"><h2>📩 Liên hệ</h2><p>Tham gia cộng đồng hoặc liên hệ với BUM.</p></div>
+<a class="btn btn-primary" href="#" onclick="notify('Link Discord sẽ được thêm sau!');return false">💬 Discord</a>
+</div>
+</section>
+
+<footer>© 2026 BUM WEB • Built for BUM 🗿</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+function toggleMenu(){document.getElementById('links').classList.toggle('open')}
+function notify(text){
+ const t=document.getElementById('toast');
+ t.textContent=text;t.classList.add('show');
+ setTimeout(()=>t.classList.remove('show'),2500);
+}
+function buy(name){notify('Đã chọn "'+name+'". Đây là bản demo, chưa thanh toán thật 🛒')}
+document.querySelectorAll('.links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('links').classList.remove('open')));
+</script>
 </body>
 </html>
-```
