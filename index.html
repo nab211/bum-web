@@ -3,30 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BUM WEB</title>
+<title>NAB STORE</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Arial,Helvetica,sans-serif;background:#07080d;color:#f5f7ff;line-height:1.6}
+body{font-family:Arial,Helvetica,sans-serif;background:#07080d;color:#f5f7ff;line-height:1.6;-webkit-tap-highlight-color:transparent}
 a{text-decoration:none;color:inherit}
 button{font:inherit}
-.nav{position:fixed;top:0;left:0;right:0;height:70px;background:rgba(7,8,13,.82);backdrop-filter:blur(14px);border-bottom:1px solid #202331;z-index:20}
+.nav{position:fixed;top:0;left:0;right:0;height:70px;background:rgba(7,8,13,.85);backdrop-filter:blur(14px);border-bottom:1px solid #202331;z-index:20}
 .nav-inner{max-width:1180px;height:100%;margin:auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:25px;font-weight:900;color:#5ee7ff}
 .links{display:flex;gap:25px;list-style:none}
 .links a{color:#b8bdcc;transition:.2s}
 .links a:hover{color:#5ee7ff}
-.menu-btn{display:none;background:none;border:0;color:white;font-size:27px}
+.menu-btn{display:none;background:none;border:0;color:white;font-size:27px;cursor:pointer}
 .hero{min-height:100vh;padding:150px 20px 90px;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 25%,rgba(0,220,255,.16),transparent 32%),radial-gradient(circle at 20% 80%,rgba(124,60,255,.12),transparent 30%)}
 .hero-box{max-width:900px}
 .badge{display:inline-block;padding:7px 14px;border:1px solid #263342;border-radius:999px;color:#8eefff;background:#0c1820;margin-bottom:22px}
-.hero h1{font-size:clamp(50px,9vw,100px);line-height:1;background:linear-gradient(90deg,#5ee7ff,#8c62ff,#5ee7ff);background-size:200%;-webkit-background-clip:text;color:transparent;animation:shine 5s linear infinite}
+.hero h1{font-size:clamp(40px,8vw,100px);line-height:1.1;background:linear-gradient(90deg,#5ee7ff,#8c62ff,#5ee7ff);background-size:200%;-webkit-background-clip:text;color:transparent;animation:shine 5s linear infinite}
 @keyframes shine{to{background-position:200%}}
 .hero p{max-width:680px;margin:25px auto;color:#9ca3b4;font-size:18px}
-.btn{display:inline-block;border:0;border-radius:12px;padding:13px 22px;cursor:pointer;font-weight:800;transition:.2s}
+.btn{display:inline-block;border:0;border-radius:12px;padding:13px 22px;cursor:pointer;font-weight:800;transition:.2s;text-align:center}
 .btn-primary{background:linear-gradient(90deg,#00cfee,#7757ff);color:white}
 .btn-secondary{background:#151824;border:1px solid #292f40;color:#dce1ef;margin-left:10px}
-.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,220,255,.12)}
+.btn:hover,.btn:active{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,220,255,.12)}
 .section{max-width:1180px;margin:auto;padding:95px 20px}
 .section-title{text-align:center;margin-bottom:45px}
 .section-title h2{font-size:38px}
@@ -49,14 +49,35 @@ button{font:inherit}
 footer{border-top:1px solid #202331;color:#707789;text-align:center;padding:28px 20px}
 .toast{position:fixed;right:20px;bottom:20px;background:#151a24;border:1px solid #344052;border-radius:12px;padding:14px 18px;transform:translateY(130px);opacity:0;transition:.3s;z-index:50}
 .toast.show{transform:translateY(0);opacity:1}
+
+/* Modal Tài Khoản */
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);display:none;place-items:center;z-index:100;padding:20px}
+.modal.open{display:grid}
+.modal-content{background:#11141d;border:1px solid #252b3b;border-radius:20px;padding:30px;width:100%;max-width:400px;position:relative}
+.modal-close{position:absolute;top:15px;right:20px;background:none;border:0;color:#8e95a7;font-size:24px;cursor:pointer}
+.modal-title{font-size:24px;margin-bottom:20px;text-align:center}
+.form-group{margin-bottom:15px}
+.form-group label{display:block;margin-bottom:5px;color:#8e95a7;font-size:14px}
+.form-group input{width:100%;padding:12px;background:#090b10;border:1px solid #222735;border-radius:8px;color:white;outline:none}
+.form-group input:focus{border-color:#5ee7ff}
+.modal-switch{text-align:center;margin-top:15px;color:#8e95a7;font-size:14px}
+.modal-switch span{color:#5ee7ff;cursor:pointer;font-weight:bold}
+
+/* Responsive Điện thoại */
 @media(max-width:850px){
 .grid{grid-template-columns:repeat(2,1fr)}.shop-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr}
 .links{display:none;position:absolute;top:70px;left:0;right:0;background:#0b0d13;padding:20px;flex-direction:column;gap:15px;border-bottom:1px solid #222735}
 .links.open{display:flex}.menu-btn{display:block}
 }
 @media(max-width:560px){
-.grid,.shop-grid{grid-template-columns:1fr}.hero h1{font-size:58px}.btn{width:100%;margin:7px 0!important}
-.section{padding:75px 16px}
+.grid,.shop-grid{grid-template-columns:1fr}
+.hero h1{font-size:42px}
+.hero p{font-size:15px}
+.btn{width:100%;margin:7px 0!important}
+.section{padding:50px 16px}
+.section-title h2{font-size:28px}
+.stat b{font-size:28px}
+.card{padding:20px}
 }
 </style>
 </head>
@@ -64,7 +85,7 @@ footer{border-top:1px solid #202331;color:#707789;text-align:center;padding:28px
 
 <nav class="nav">
 <div class="nav-inner">
-<a class="logo" href="#home">BUM</a>
+<a class="logo" href="#home">NAB STORE</a>
 <ul class="links" id="links">
 <li><a href="#home">Trang chủ</a></li>
 <li><a href="#shop">Shop</a></li>
@@ -78,81 +99,198 @@ footer{border-top:1px solid #202331;color:#707789;text-align:center;padding:28px
 
 <section class="hero" id="home">
 <div class="hero-box">
-<div class="badge">🚀 BUM WEB • VERSION 1.0</div>
-<h1>BUM WEB</h1>
-<p>Website trung tâm của BUM, nơi gom shop, dịch vụ, cộng đồng và những dự án đang được xây dựng.</p>
+<div class="badge">🚀 NAB STORE • VERSION 1.0</div>
+<h1>NAB STORE</h1>
+<p>Website trung tâm của NAB STORE, nơi cung cấp dịch vụ, phần mềm, tài nguyên cộng đồng và các dự án phát triển độc quyền.</p>
 <a class="btn btn-primary" href="#shop">🛒 Khám phá shop</a>
 <a class="btn btn-secondary" href="#services">⚡ Xem dịch vụ</a>
 </div>
 </section>
 
 <section class="section" id="shop">
-<div class="section-title"><h2>🛒 BUM SHOP</h2><p>Sản phẩm demo, sau này có thể nối database và thanh toán thật.</p></div>
+<div class="section-title"><h2>🛒 NAB SHOP</h2><p>Sản phẩm demo, hỗ trợ tích hợp thanh toán tự động và cơ sở dữ liệu.</p></div>
 <div class="shop-grid">
-<div class="card product"><span class="tag">HOT</span><div class="icon">☁️</div><h3>Cloud Trial</h3><p class="muted">Gói cloud dùng thử.</p><div class="price">500 BXU</div><button class="btn btn-primary" onclick="buy('Cloud Trial')">Mua ngay</button></div>
-<div class="card product"><div class="icon">🤖</div><h3>Discord Bot</h3><p class="muted">Bot quản lý và tiện ích cho server.</p><div class="price">1.000 BXU</div><button class="btn btn-primary" onclick="buy('Discord Bot')">Mua ngay</button></div>
-<div class="card product"><span class="tag">NEW</span><div class="icon">🎮</div><h3>Gaming Pack</h3><p class="muted">Gói dịch vụ gaming demo.</p><div class="price">750 BXU</div><button class="btn btn-primary" onclick="buy('Gaming Pack')">Mua ngay</button></div>
+<div class="card product"><span class="tag">HOT</span><div class="icon">☁️</div><h3>Cloud Trial</h3><p class="muted">Gói cloud dùng thử hiệu năng cao.</p><div class="price">500 NAB Coins</div><button class="btn btn-primary" onclick="buy('Cloud Trial')">Mua ngay</button></div>
+<div class="card product"><div class="icon">🤖</div><h3>Discord Bot</h3><p class="muted">Bot quản lý và tiện ích cao cấp cho server.</p><div class="price">1.000 NAB Coins</div><button class="btn btn-primary" onclick="buy('Discord Bot')">Mua ngay</button></div>
+<div class="card product"><span class="tag">NEW</span><div class="icon">🎮</div><h3>Gaming Pack</h3><p class="muted">Gói dịch vụ hỗ trợ tối ưu gaming.</p><div class="price">750 NAB Coins</div><button class="btn btn-primary" onclick="buy('Gaming Pack')">Mua ngay</button></div>
 </div>
 </section>
 
 <section class="section" id="services">
-<div class="section-title"><h2>⚡ Dịch vụ</h2><p>Những thứ BUM đang hướng tới.</p></div>
+<div class="section-title"><h2>⚡ Dịch vụ</h2><p>Các giải pháp công nghệ NAB STORE cung cấp.</p></div>
 <div class="grid">
-<div class="card"><div class="icon">☁️</div><h3>Cloud</h3><p class="muted">Quản lý các gói cloud và máy ảo.</p></div>
-<div class="card"><div class="icon">🤖</div><h3>Discord</h3><p class="muted">Bot, server và hệ thống cộng đồng.</p></div>
-<div class="card"><div class="icon">💰</div><h3>BXU</h3><p class="muted">Hệ thống tiền tệ riêng cho website.</p></div>
-<div class="card"><div class="icon">🎮</div><h3>Gaming</h3><p class="muted">Các dự án và dịch vụ liên quan đến game.</p></div>
+<div class="card"><div class="icon">☁️</div><h3>Cloud Hosting</h3><p class="muted">Hệ thống máy ảo và server tốc độ cao.</p></div>
+<div class="card"><div class="icon">🤖</div><h3>Discord System</h3><p class="muted">Thiết kế bot và xây dựng cộng đồng Discord.</p></div>
+<div class="card"><div class="icon">💰</div><h3>NAB Coins</h3><p class="muted">Ví tiền tệ nạp/rút nội bộ trên hệ thống.</p></div>
+<div class="card"><div class="icon">🎮</div><h3>Game Services</h3><p class="muted">Dịch vụ lưu trữ và tiện ích trò chơi trực tuyến.</p></div>
 </div>
 </section>
 
 <section class="section" id="account">
-<div class="section-title"><h2>👤 Tài khoản</h2><p>Khu vực tài khoản demo.</p></div>
+<div class="section-title"><h2>👤 Tài khoản</h2><p id="account-subtitle">Khu vực tài khoản cá nhân.</p></div>
 <div class="stats">
-<div class="stat"><b>1,250</b><span class="muted">BXU</span></div>
-<div class="stat"><b>12</b><span class="muted">Đơn hàng</span></div>
-<div class="stat"><b>Lv. 7</b><span class="muted">Cấp độ</span></div>
+<div class="stat"><b id="user-coins">0</b><span class="muted">NAB Coins</span></div>
+<div class="stat"><b id="user-orders">0</b><span class="muted">Đơn hàng</span></div>
+<div class="stat"><b id="user-level">Lv. 1</b><span class="muted">Cấp độ VIP</span></div>
 </div>
-<div style="text-align:center;margin-top:25px"><button class="btn btn-primary" onclick="notify('Tính năng đăng nhập đang được phát triển 🛠️')">Đăng nhập</button></div>
+<div style="text-align:center;margin-top:25px" id="account-actions">
+<button class="btn btn-primary" onclick="openAuthModal('login')">Đăng nhập / Đăng ký</button>
+</div>
 </section>
 
 <section class="section">
-<div class="section-title"><h2>📊 BUM STATS</h2><p>Thông tin tổng quan demo.</p></div>
+<div class="section-title"><h2>📊 NAB STATS</h2><p>Thống kê hoạt động của hệ thống.</p></div>
 <div class="grid">
-<div class="card"><h3>👥 Thành viên</h3><p class="price">1,024+</p><p class="muted">Cộng đồng đang phát triển.</p></div>
-<div class="card"><h3>📦 Đơn hàng</h3><p class="price">3,280+</p><p class="muted">Dữ liệu minh họa.</p></div>
-<div class="card"><h3>🤖 Bot</h3><p class="price">24/7</p><p class="muted">Mục tiêu hoạt động ổn định.</p></div>
-<div class="card"><h3>⭐ Uptime</h3><p class="price">99.9%</p><p class="muted">Chỉ là số demo hiện tại.</p></div>
+<div class="card"><h3>👥 Thành viên</h3><p class="price">1,024+</p><p class="muted">Người dùng đang hoạt động.</p></div>
+<div class="card"><h3>📦 Đơn hàng</h3><p class="price">3,280+</p><p class="muted">Giao dịch thành công.</p></div>
+<div class="card"><h3>🤖 Máy chủ</h3><p class="price">24/7</p><p class="muted">Hệ thống hoạt động liên tục.</p></div>
+<div class="card"><h3>⭐ Độ ổn định</h3><p class="price">99.9%</p><p class="muted">Chỉ số Uptime cam kết.</p></div>
 </div>
 </section>
 
 <section class="section" id="about">
-<div class="section-title"><h2>👋 Về BUM</h2></div>
+<div class="section-title"><h2>👋 Về NAB STORE</h2></div>
 <div class="about">
-<p>BUM WEB là giao diện trung tâm cho các dự án, shop và cộng đồng của BUM. Đây là bản frontend demo, chưa kết nối hệ thống backend.</p>
+<p>NAB STORE là nền tảng quản lý dịch vụ và phân phối tài nguyên công nghệ thuộc thương hiệu NAB. Hệ thống hỗ trợ hoàn hảo trên cả máy tính và thiết bị di động.</p>
 <br>
-<p>Sau này có thể bổ sung đăng nhập, database, BXU thật, lịch sử giao dịch, quản lý đơn hàng và trang quản trị.</p>
+<p>Phiên bản chính thức sẽ tích hợp cổng thanh toán tự động, quản lý số dư NAB Coins, lịch sử giao dịch chi tiết và Dashboard quản trị toàn diện.</p>
 </div>
 </section>
 
 <section class="section" id="contact">
 <div class="contact">
-<div class="section-title" style="margin-bottom:20px"><h2>📩 Liên hệ</h2><p>Tham gia cộng đồng hoặc liên hệ với BUM.</p></div>
-<a class="btn btn-primary" href="#" onclick="notify('Link Discord sẽ được thêm sau!');return false">💬 Discord</a>
+<div class="section-title" style="margin-bottom:20px"><h2>📩 Liên hệ</h2><p>Gia nhập cộng đồng hoặc nhận hỗ trợ từ NAB STORE.</p></div>
+<a class="btn btn-primary" href="https://discord.gg/6HpEAsYpD" target="_blank">💬 Server của mình ở đây</a>
 </div>
 </section>
 
-<footer>© 2026 BUM WEB • Built for BUM 🗿</footer>
+<footer>© 2026 NAB STORE • All Rights Reserved 🗿</footer>
 <div class="toast" id="toast"></div>
 
+<!-- Modal Đăng nhập / Đăng ký -->
+<div class="modal" id="authModal">
+<div class="modal-content">
+<button class="modal-close" onclick="closeAuthModal()">✕</button>
+<h3 class="modal-title" id="modalTitle">Đăng nhập</h3>
+<form onsubmit="handleAuth(event)">
+<div class="form-group">
+<label for="username">Tên tài khoản</label>
+<input type="text" id="username" required placeholder="Nhập tài khoản...">
+</div>
+<div class="form-group">
+<label for="password">Mật khẩu</label>
+<input type="password" id="password" required placeholder="Nhập mật khẩu...">
+</div>
+<button type="submit" class="btn btn-primary" style="width:100%" id="modalSubmitBtn">Đăng nhập</button>
+</form>
+<div class="modal-switch" id="modalSwitch">
+Chưa có tài khoản? <span onclick="switchAuthMode('register')">Đăng ký ngay</span>
+</div>
+</div>
+</div>
+
 <script>
+let currentMode = 'login';
+
 function toggleMenu(){document.getElementById('links').classList.toggle('open')}
 function notify(text){
  const t=document.getElementById('toast');
  t.textContent=text;t.classList.add('show');
  setTimeout(()=>t.classList.remove('show'),2500);
 }
-function buy(name){notify('Đã chọn "'+name+'". Đây là bản demo, chưa thanh toán thật 🛒')}
+function buy(name){
+ const currentUser = localStorage.getItem('nab_currentUser');
+ if(!currentUser){
+  notify('Vui lòng đăng nhập để mua hàng! ⚠️');
+  openAuthModal('login');
+  return;
+ }
+ notify('Đã chọn "'+name+'". Đây là bản demo, chưa thanh toán thật 🛒');
+}
 document.querySelectorAll('.links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('links').classList.remove('open')));
+
+/* Auth Logic */
+function openAuthModal(mode){
+ currentMode = mode;
+ updateModalUI();
+ document.getElementById('authModal').classList.add('open');
+}
+function closeAuthModal(){
+ document.getElementById('authModal').classList.remove('open');
+}
+function switchAuthMode(mode){
+ currentMode = mode;
+ updateModalUI();
+}
+function updateModalUI(){
+ if(currentMode === 'login'){
+  document.getElementById('modalTitle').textContent = 'Đăng nhập';
+  document.getElementById('modalSubmitBtn').textContent = 'Đăng nhập';
+  document.getElementById('modalSwitch').innerHTML = 'Chưa có tài khoản? <span onclick="switchAuthMode(\'register\')">Đăng ký ngay</span>';
+ }else{
+  document.getElementById('modalTitle').textContent = 'Đăng ký';
+  document.getElementById('modalSubmitBtn').textContent = 'Tạo tài khoản';
+  document.getElementById('modalSwitch').innerHTML = 'Đã có tài khoản? <span onclick="switchAuthMode(\'login\')">Đăng nhập</span>';
+ }
+}
+
+function handleAuth(e){
+ e.preventDefault();
+ const user = document.getElementById('username').value.trim();
+ const pass = document.getElementById('password').value.trim();
+ const users = JSON.parse(localStorage.getItem('nab_users') || '{}');
+
+ if(currentMode === 'register'){
+  if(users[user]){
+   notify('Tài khoản đã tồn tại! ❌');
+   return;
+  }
+  users[user] = { pass: pass, coins: 1250, orders: 0, level: 'Lv. 1' };
+  localStorage.setItem('nab_users', JSON.stringify(users));
+  localStorage.setItem('nab_currentUser', user);
+  notify('Đăng ký thành công! 🎉');
+ }else{
+  if(!users[user] || users[user].pass !== pass){
+   notify('Sai tài khoản hoặc mật khẩu! ❌');
+   return;
+  }
+  localStorage.setItem('nab_currentUser', user);
+  notify('Đăng nhập thành công! 👋');
+ }
+ closeAuthModal();
+ checkLoginStatus();
+}
+
+function logout(){
+ localStorage.removeItem('nab_currentUser');
+ notify('Đã đăng xuất! 👋');
+ checkLoginStatus();
+}
+
+function checkLoginStatus(){
+ const currentUser = localStorage.getItem('nab_currentUser');
+ const users = JSON.parse(localStorage.getItem('nab_users') || '{}');
+ const accountActions = document.getElementById('account-actions');
+ const subtitle = document.getElementById('account-subtitle');
+ 
+ if(currentUser && users[currentUser]){
+  const userData = users[currentUser];
+  subtitle.textContent = 'Xin chào, ' + currentUser + '!';
+  document.getElementById('user-coins').textContent = userData.coins.toLocaleString();
+  document.getElementById('user-orders').textContent = userData.orders;
+  document.getElementById('user-level').textContent = userData.level;
+  accountActions.innerHTML = '<button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>';
+ }else{
+  subtitle.textContent = 'Khu vực tài khoản cá nhân.';
+  document.getElementById('user-coins').textContent = '0';
+  document.getElementById('user-orders').textContent = '0';
+  document.getElementById('user-level').textContent = 'Lv. 1';
+  accountActions.innerHTML = '<button class="btn btn-primary" onclick="openAuthModal(\'login\')">Đăng nhập / Đăng ký</button>';
+ }
+}
+
+// Kiểm tra trạng thái khi tải trang
+checkLoginStatus();
 </script>
 </body>
 </html>
