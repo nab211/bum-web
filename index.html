@@ -3,213 +3,374 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAB STORE - Cửa Hàng Đồng Bộ Discord</title>
+<title>NAB STORE - Cửa Hàng Cloud Phone & Code VPS</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Arial,Helvetica,sans-serif;background:#07080d;color:#f5f7ff;line-height:1.6;-webkit-tap-highlight-color:transparent}
+body{font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:#090a10;color:#f5f7ff;line-height:1.6;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
-button{font:inherit}
-.nav{position:fixed;top:0;left:0;right:0;height:70px;background:rgba(7,8,13,.85);backdrop-filter:blur(14px);border-bottom:1px solid #202331;z-index:20}
-.nav-inner{max-width:1180px;height:100%;margin:auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:25px;font-weight:900;color:#5ee7ff}
+button{font:inherit;cursor:pointer}
+
+/* Announcement Bar */
+.ticker{background:linear-gradient(90deg,#00d2ff,#7757ff);color:#fff;font-size:13px;font-weight:700;padding:6px 0;text-align:center;position:fixed;top:0;left:0;right:0;z-index:30}
+
+/* Header Navbar */
+.nav{position:fixed;top:31px;left:0;right:0;height:70px;background:rgba(13,15,24,.8);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);z-index:20;transition:.3s}
+.nav-inner{max-width:1200px;height:100%;margin:auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px;background:linear-gradient(90deg,#5ee7ff,#a88beb);-webkit-background-clip:text;color:transparent;display:flex;align-items:center;gap:10px}
 .links{display:flex;gap:25px;list-style:none}
-.links a{color:#b8bdcc;transition:.2s}
-.links a:hover{color:#5ee7ff}
-.menu-btn{display:none;background:none;border:0;color:white;font-size:27px;cursor:pointer}
-.hero{min-height:80vh;padding:130px 20px 60px;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 25%,rgba(0,220,255,.16),transparent 32%),radial-gradient(circle at 20% 80%,rgba(124,60,255,.12),transparent 30%)}
-.hero-box{max-width:900px}
-.badge{display:inline-block;padding:7px 14px;border:1px solid #263342;border-radius:999px;color:#8eefff;background:#0c1820;margin-bottom:22px}
-.hero h1{font-size:clamp(36px,7vw,80px);line-height:1.1;background:linear-gradient(90deg,#5ee7ff,#8c62ff,#5ee7ff);background-size:200%;-webkit-background-clip:text;color:transparent;animation:shine 5s linear infinite}
-@keyframes shine{to{background-position:200%}}
-.hero p{max-width:680px;margin:25px auto;color:#9ca3b4;font-size:18px}
-.btn{display:inline-block;border:0;border-radius:12px;padding:12px 20px;cursor:pointer;font-weight:800;transition:.2s;text-align:center}
-.btn-primary{background:linear-gradient(90deg,#00cfee,#7757ff);color:white}
-.btn-secondary{background:#151824;border:1px solid #292f40;color:#dce1ef}
-.btn-discord{background:#5865F2;color:white}
-.btn-discord:hover{background:#4752C4}
-.btn:hover,.btn:active{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,220,255,.12)}
-.section{max-width:1180px;margin:auto;padding:60px 20px}
-.section-title{text-align:center;margin-bottom:40px}
-.section-title h2{font-size:36px}
-.section-title p{color:#8e95a7;margin-top:8px}
+.links a{color:#a0a7bc;font-weight:600;font-size:15px;transition:.2s;display:flex;align-items:center;gap:6px}
+.links a:hover,.links a.active{color:#5ee7ff}
+.menu-btn{display:none;background:none;border:0;color:white;font-size:24px}
 
-/* Shop Grid Updated */
-.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
-.card{background:linear-gradient(180deg,#11141d,#0d0f16);border:1px solid #222735;border-radius:18px;padding:22px;transition:.25s;display:flex;flex-direction:column;justify-content:space-between}
-.card:hover{transform:translateY(-5px);border-color:#3ddcf6;box-shadow:0 12px 35px rgba(0,0,0,.3)}
-.product-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
-.product-title{font-size:18px;font-weight:bold;color:#fff}
-.product-id{font-size:12px;background:#1a2130;padding:3px 8px;border-radius:6px;color:#8eefff;border:1px solid #2c3a50;font-family:monospace}
-.stock-badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:4px 10px;border-radius:999px;font-weight:bold;margin-bottom:12px}
-.stock-green{background:rgba(46,204,113,0.15);color:#2ecc71;border:1px solid rgba(46,204,113,0.3)}
-.stock-yellow{background:rgba(241,196,15,0.15);color:#f1c40f;border:1px solid rgba(241,196,15,0.3)}
-.stock-red{background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.3)}
-.note{font-size:13px;color:#8f96a8;background:#090b10;padding:10px;border-radius:8px;border-left:3px solid #5ee7ff;margin-bottom:15px}
-.price{font-size:22px;font-weight:900;color:#65eaff;margin-bottom:15px;display:flex;align-items:center;gap:6px}
+/* Hero Section */
+.hero{min-height:75vh;padding:160px 20px 60px;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 20%,rgba(0,210,255,.15),transparent 45%),radial-gradient(circle at 80% 80%,rgba(120,80,255,.1),transparent 40%)}
+.hero-box{max-width:850px}
+.badge-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border:1px solid rgba(94,231,255,.3);border-radius:999px;color:#5ee7ff;background:rgba(94,231,255,.05);font-size:13px;font-weight:700;margin-bottom:24px}
+.hero h1{font-size:clamp(38px,6vw,68px);font-weight:900;line-height:1.15;letter-spacing:-1px;margin-bottom:20px;background:linear-gradient(135deg,#ffffff 30%,#8eefff 70%,#a88beb);-webkit-background-clip:text;color:transparent}
+.hero p{max-width:640px;margin:0 auto 30px;color:#94a0b8;font-size:17px}
+.hero-btns{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
 
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.stat{padding:25px;border-radius:18px;background:#10131b;border:1px solid #222735;text-align:center}
-.stat b{font-size:32px;display:block;color:#65eaff}
-footer{border-top:1px solid #202331;color:#707789;text-align:center;padding:28px 20px}
-.toast{position:fixed;right:20px;bottom:20px;background:#151a24;border:1px solid #344052;border-radius:12px;padding:14px 18px;transform:translateY(130px);opacity:0;transition:.3s;z-index:50}
+/* Buttons */
+.btn{border:0;border-radius:12px;padding:12px 24px;font-weight:700;font-size:15px;transition:all .25s ease;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{background:linear-gradient(90deg,#00cfee,#7757ff);color:#fff;box-shadow:0 8px 25px rgba(0,207,238,.25)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,207,238,.4)}
+.btn-secondary{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#e2e8f0}
+.btn-secondary:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+
+/* Main Content Section */
+.section{max-width:1200px;margin:auto;padding:60px 20px}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:30px;flex-wrap:wrap;gap:20px}
+.section-title h2{font-size:30px;font-weight:800;color:#fff}
+.section-title p{color:#7a8499;font-size:14px;margin-top:4px}
+
+/* Search Bar */
+.search-box{display:flex;gap:10px;background:#131722;border:1px solid rgba(255,255,255,.1);padding:6px 12px;border-radius:12px;width:100%;max-width:320px}
+.search-box input{background:none;border:0;outline:0;color:#fff;width:100%;font-size:14px}
+.search-box i{color:#64748b;align-self:center}
+
+/* Shop Cards Grid */
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.card{background:linear-gradient(160deg,rgba(23,28,42,0.8),rgba(15,18,27,0.9));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;transition:all .3s ease;display:flex;flex-direction:column;justify-content:space-between;position:relative;backdrop-filter:blur(10px)}
+.card:hover{transform:translateY(-6px);border-color:rgba(94,231,255,.4);box-shadow:0 15px 35px rgba(0,0,0,.4)}
+.product-top{margin-bottom:15px}
+.product-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.product-title{font-size:18px;font-weight:700;color:#f8fafc;line-height:1.3}
+.product-id{font-size:11px;background:rgba(94,231,255,.1);color:#5ee7ff;padding:3px 8px;border-radius:6px;border:1px solid rgba(94,231,255,.2);font-family:monospace;font-weight:bold}
+.stock-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 10px;border-radius:20px;font-weight:700;margin-bottom:12px}
+.stock-green{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.25)}
+.stock-yellow{background:rgba(234,179,8,.12);color:#facc15;border:1px solid rgba(234,179,8,.25)}
+.stock-red{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.25)}
+.note-box{font-size:13px;color:#94a3b8;background:rgba(0,0,0,.3);padding:12px;border-radius:10px;border-left:3px solid #5ee7ff;margin-bottom:18px;min-height:58px}
+.price-tag{font-size:22px;font-weight:900;color:#5ee7ff;margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.price-tag span{font-size:13px;color:#64748b;font-weight:normal}
+
+/* Account Widget & Auth Form */
+.account-card{background:linear-gradient(135deg,#131826,#0d101a);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:30px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;text-align:center}
+.stat-box{padding:15px;border-radius:14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04)}
+.stat-box h3{font-size:28px;color:#5ee7ff;font-weight:800}
+.stat-box p{font-size:13px;color:#64748b;margin-top:2px}
+
+.auth-form{max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:15px}
+.form-group{display:flex;flex-direction:column;gap:6px;text-align:left}
+.form-group label{font-size:13px;color:#94a3b8;font-weight:600}
+.form-group input{background:#0a0c12;border:1px solid rgba(255,255,255,.1);padding:12px;border-radius:10px;color:#fff;outline:none;font-size:14px}
+.form-group input:focus{border-color:#5ee7ff}
+
+footer{border-top:1px solid rgba(255,255,255,.08);color:#64748b;text-align:center;padding:30px 20px;margin-top:40px;font-size:14px}
+.toast{position:fixed;right:20px;bottom:20px;background:#1e293b;border:1px solid #334155;color:#fff;padding:12px 20px;border-radius:10px;box-shadow:0 10px 25px rgba(0,0,0,.5);transform:translateY(100px);opacity:0;transition:.3s;z-index:200}
 .toast.show{transform:translateY(0);opacity:1}
 
-@media(max-width:850px){
-.stats{grid-template-columns:1fr}
-.links{display:none;position:absolute;top:70px;left:0;right:0;background:#0b0d13;padding:20px;flex-direction:column;gap:15px;border-bottom:1px solid #222735}
-.links.open{display:flex}.menu-btn{display:block}
+@media(max-width:768px){
+.links{display:none;position:absolute;top:70px;left:0;right:0;background:#0d0f18;padding:20px;flex-direction:column;gap:15px;border-bottom:1px solid rgba(255,255,255,.1)}
+.links.open{display:flex}
+.menu-btn{display:block}
 }
 </style>
 </head>
 <body>
 
+<div class="ticker">🚀 HỆ THỐNG CỬA HÀNG TỰ ĐỘNG NAB STORE 24/7</div>
+
 <nav class="nav">
-<div class="nav-inner">
-<a class="logo" href="#home">NAB STORE</a>
-<ul class="links" id="links">
-<li><a href="#home">Trang chủ</a></li>
-<li><a href="#shop">Cửa hàng</a></li>
-<li><a href="#account">Tài khoản</a></li>
-<li><a href="https://discord.gg/6HpEAsYpD" target="_blank">Discord Server</a></li>
-</ul>
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-</div>
+  <div class="nav-inner">
+    <a class="logo" href="#home"><i class="fa-solid fa-bolt"></i> NAB STORE</a>
+    <ul class="links" id="links">
+      <li><a href="#home" class="active"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+      <li><a href="#shop"><i class="fa-solid fa-cart-shopping"></i> Sản phẩm</a></li>
+      <li><a href="#account"><i class="fa-solid fa-user"></i> Tài khoản</a></li>
+    </ul>
+    <button class="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+  </div>
 </nav>
 
 <section class="hero" id="home">
-<div class="hero-box">
-<div class="badge">🛒 CỬA HÀNG ĐỒNG BỘ DISCORD</div>
-<h1>NAB STORE</h1>
-<p>Hệ thống tự động phân phối Code Cloud Phone & VPS. Đồng bộ số dư Xu realtime với Bot Discord.</p>
-<a class="btn btn-primary" href="#shop">🛒 Đến cửa hàng ngay</a>
-</div>
+  <div class="hero-box">
+    <div class="badge-tag"><i class="fa-solid fa-shield-halved"></i> UY TÍN - TỰ ĐỘNG - NHANH CHÓNG</div>
+    <h1>Cửa Hàng Cloud Phone & Code VPS</h1>
+    <p>Tạo tài khoản riêng trên Web, nạp Xu và mua sắm dễ dàng hoàn toàn độc lập!</p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="#shop"><i class="fa-solid fa-bag-shopping"></i> Mua ngay</a>
+      <a class="btn btn-secondary" href="#account"><i class="fa-solid fa-user-plus"></i> Đăng ký tài khoản</a>
+    </div>
+  </div>
 </section>
 
 <section class="section" id="shop">
-<div class="section-title">
-<h2>🛒 Danh Sách Sản Phẩm</h2>
-<p>Sử dụng lệnh <code>/muasp id: &lt;id&gt; soluong: &lt;số lượng&gt;</code> trên Discord hoặc mua trực tiếp tại đây.</p>
-</div>
-<div class="shop-grid" id="product-container">
-<!-- Danh sách sản phẩm từ Discord sẽ render ở đây -->
-</div>
+  <div class="section-header">
+    <div class="section-title">
+      <h2>🛒 Danh Sách Sản Phẩm</h2>
+      <p>Chọn gói sản phẩm bạn muốn mua</p>
+    </div>
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Tìm tên gói, ID..." onkeyup="filterProducts()">
+    </div>
+  </div>
+
+  <div class="shop-grid" id="product-container">
+    <!-- Render danh sách sản phẩm -->
+  </div>
 </section>
 
 <section class="section" id="account">
-<div class="section-title"><h2>👤 Tài Khoản Của Bạn</h2><p id="account-subtitle">Liên kết với Discord để kiểm tra ví Xu.</p></div>
-<div class="stats">
-<div class="stat"><b id="user-coins">0</b><span class="muted">Số Xu Hiện Có</span></div>
-<div class="stat"><b id="user-orders">0</b><span class="muted">Sản Phẩm Đã Mua</span></div>
-<div class="stat"><b id="user-id">Chưa đăng nhập</b><span class="muted">Discord ID</span></div>
-</div>
-<div style="text-align:center;margin-top:25px" id="account-actions">
-<button class="btn btn-discord" onclick="loginWithDiscord()">🎮 Đăng nhập bằng Discord</button>
-</div>
+  <div class="section-header">
+    <div class="section-title">
+      <h2>👤 Quản Lý Tài Khoản Web</h2>
+      <p>Đăng ký hoặc đăng nhập tài khoản riêng của bạn</p>
+    </div>
+  </div>
+
+  <div class="account-card" id="account-card-content">
+    <!-- Form Đăng ký/Đăng nhập hoặc Khung thông tin sẽ hiển thị ở đây -->
+  </div>
 </section>
 
-<footer>© 2026 NAB STORE • Đồng bộ tự động với Discord Bot 🗿</footer>
+<footer>
+  <p>© 2026 NAB STORE • Cửa hàng trực tuyến độc lập</p>
+</footer>
+
 <div class="toast" id="toast"></div>
 
 <script>
-// Danh sách sản phẩm mô phỏng lại đúng hình ảnh shop Discord của bạn
 const products = [
-  { id: "01", name: "Ugphone Trial 4h", price: 1000, stock: 23, status: "green", note: "Admin sẽ gửi bạn tài khoản gmail hoặc localcode để bạn lấy máy!" },
-  { id: "02", name: "Vipplayer SVIP code 1 day", price: 6000, stock: 100, status: "green", note: "Admin sẽ gửi bạn code để bạn lấy máy!" },
-  { id: "03", name: "Vmos V08 1 day", price: 6100, stock: 74, status: "green", note: "Admin sẽ gửi bạn code để bạn lấy máy, admin sẽ hướng dẫn bạn cách lấy máy" },
-  { id: "04", name: "Ugphone 7 day", price: 56700, stock: 3, status: "yellow", note: "Admin sẽ gửi bạn code để bạn lấy máy, admin sẽ hướng dẫn nếu bạn cần!" },
-  { id: "05", name: "Redfinger code 7 day", price: 35450, stock: 33, status: "green", note: "code sẽ được gửi riêng cho bạn" },
-  { id: "06", name: "Vipplayer SVIP code 7 day", price: 34000, stock: 14, status: "green", note: "code sẽ được gửi riêng cho bạn" },
-  { id: "07", name: "vmos trial 4h", price: 200, stock: 380, status: "green", note: "đăng nhập bằng localcode" }
+  { id: "01", name: "Ugphone Trial 4h", price: 1000, stock: 23, status: "green", note: "Nhận ngay thông tin tài khoản/localcode sau khi mua." },
+  { id: "02", name: "Vipplayer SVIP code 1 day", price: 6000, stock: 100, status: "green", note: "Code kích hoạt tự động 1 ngày sử dụng." },
+  { id: "03", name: "Vmos V08 1 day", price: 6100, stock: 74, status: "green", note: "Code dùng 1 ngày, đầy đủ hướng dẫn sử dụng." },
+  { id: "04", name: "Ugphone 7 day", price: 56700, stock: 3, status: "yellow", note: "Gói 7 ngày liên tục treo game mượt mà." },
+  { id: "05", name: "Redfinger code 7 day", price: 35450, stock: 33, status: "green", note: "Mã code riêng biệt, bảo hành trọn thời gian." },
+  { id: "06", name: "Vipplayer SVIP code 7 day", price: 34000, stock: 14, status: "green", note: "Cấu hình SVIP chuyên treo game nặng." },
+  { id: "07", name: "Vmos trial 4h", price: 200, stock: 380, status: "green", note: "Đăng nhập nhanh bằng localcode." }
 ];
 
-function renderProducts() {
+let isRegisterMode = false;
+
+function renderProducts(items = products) {
   const container = document.getElementById('product-container');
-  container.innerHTML = products.map(item => {
+  if(items.length === 0) {
+    container.innerHTML = '<p style="color:#64748b; text-align:center; grid-column:1/-1">Không tìm thấy sản phẩm nào!</p>';
+    return;
+  }
+
+  container.innerHTML = items.map(item => {
     let badgeClass = "stock-green";
-    let badgeText = `🟢 Còn ${item.stock}`;
+    let badgeText = `<i class="fa-solid fa-check"></i> Còn ${item.stock}`;
     if(item.status === 'yellow') {
       badgeClass = "stock-yellow";
-      badgeText = `🟡 Còn ${item.stock} (sắp hết)`;
+      badgeText = `<i class="fa-solid fa-triangle-exclamation"></i> Còn ${item.stock} (Sắp hết)`;
     } else if(item.stock <= 0) {
       badgeClass = "stock-red";
-      badgeText = `🔴 Hết hàng`;
+      badgeText = `<i class="fa-solid fa-xmark"></i> Hết hàng`;
     }
 
     return `
       <div class="card">
-        <div>
-          <div class="product-header">
+        <div class="product-top">
+          <div class="product-head">
             <div class="product-title">${item.name}</div>
             <div class="product-id">ID: ${item.id}</div>
           </div>
-          <div class="stock-badge ${badgeClass}">${badgeText}</div>
-          <div class="note">📝 ${item.note}</div>
+          <div class="stock-tag ${badgeClass}">${badgeText}</div>
+          <div class="note-box">${item.note}</div>
         </div>
         <div>
-          <div class="price">💰 ${item.price.toLocaleString()} xu</div>
-          <button class="btn btn-primary" style="width:100%" onclick="buyProduct('${item.id}', '${item.name}', ${item.price})">Mua ngay</button>
+          <div class="price-tag">💰 ${item.price.toLocaleString()} <span>xu</span></div>
+          <button class="btn btn-primary" style="width:100%" onclick="buyProduct('${item.id}', '${item.name}', ${item.price})">
+            <i class="fa-solid fa-cart-shopping"></i> Mua ngay
+          </button>
         </div>
       </div>
     `;
   }).join('');
 }
 
-function toggleMenu(){document.getElementById('links').classList.toggle('open')}
-function notify(text){
- const t=document.getElementById('toast');
- t.textContent=text;t.classList.add('show');
- setTimeout(()=>t.classList.remove('show'),2500);
+function filterProducts() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.id.includes(query));
+  renderProducts(filtered);
 }
 
 function buyProduct(id, name, price) {
-  const currentUser = localStorage.getItem('nab_discord_user');
-  if(!currentUser){
-    notify('Vui lòng đăng nhập Discord để thực hiện giao dịch! ⚠️');
+  const userStr = localStorage.getItem('nab_web_user');
+  if(!userStr) {
+    notify('⚠️ Vui lòng đăng nhập tài khoản Web để mua hàng!');
+    window.location.href = "#account";
     return;
   }
-  notify(`Đang xử lý đơn hàng ID: ${id} (${name})... 🛒`);
+
+  let user = JSON.parse(userStr);
+  if(user.coins < price) {
+    notify(`❌ Số dư Xu không đủ! Cần ${price.toLocaleString()} xu.`);
+    return;
+  }
+
+  user.coins -= price;
+  user.orders += 1;
+  localStorage.setItem('nab_web_user', JSON.stringify(user));
+  
+  // Cập nhật lại danh sách tất cả tài khoản
+  let users = JSON.parse(localStorage.getItem('nab_web_db') || '{}');
+  users[user.username] = user;
+  localStorage.setItem('nab_web_db', JSON.stringify(users));
+
+  notify(`🎉 Mua thành công gói ${name}! Code sẽ được gửi trong lịch sử.`);
+  checkAccount();
 }
 
-function loginWithDiscord() {
-  // Thay CLIENT_ID bằng Bot Client ID thực tế của bạn nếu mở rộng OAuth2
-  notify('Tính năng kết nối API Discord đang được kích hoạt... 🎮');
-  // Demo lưu thông tin người dùng mẫu
-  const mockUser = { name: "orbit", id: "1029384756", coins: 15000, orders: 2 };
-  localStorage.setItem('nab_discord_user', JSON.stringify(mockUser));
-  checkLoginStatus();
+function renderAuthForm() {
+  const container = document.getElementById('account-card-content');
+  if(isRegisterMode) {
+    container.innerHTML = `
+      <div class="auth-form">
+        <h3 style="text-align:center; color:#fff">Tạo Tài Khoản Mới</h3>
+        <div class="form-group">
+          <label>Tên đăng nhập</label>
+          <input type="text" id="username" placeholder="Nhập tên tài khoản...">
+        </div>
+        <div class="form-group">
+          <label>Mật khẩu</label>
+          <input type="password" id="password" placeholder="Nhập mật khẩu...">
+        </div>
+        <button class="btn btn-primary" onclick="handleRegister()">Tạo tài khoản</button>
+        <p style="text-align:center; font-size:13px; color:#94a3b8">Đã có tài khoản? <a href="javascript:void(0)" onclick="toggleAuthMode()" style="color:#5ee7ff">Đăng nhập</a></p>
+      </div>
+    `;
+  } else {
+    container.innerHTML = `
+      <div class="auth-form">
+        <h3 style="text-align:center; color:#fff">Đăng Nhập Web</h3>
+        <div class="form-group">
+          <label>Tên đăng nhập</label>
+          <input type="text" id="username" placeholder="Nhập tên tài khoản...">
+        </div>
+        <div class="form-group">
+          <label>Mật khẩu</label>
+          <input type="password" id="password" placeholder="Nhập mật khẩu...">
+        </div>
+        <button class="btn btn-primary" onclick="handleLogin()">Đăng nhập</button>
+        <p style="text-align:center; font-size:13px; color:#94a3b8">Chưa có tài khoản? <a href="javascript:void(0)" onclick="toggleAuthMode()" style="color:#5ee7ff">Đăng ký ngay</a></p>
+      </div>
+    `;
+  }
+}
+
+function toggleAuthMode() {
+  isRegisterMode = !isRegisterMode;
+  renderAuthForm();
+}
+
+function handleRegister() {
+  const u = document.getElementById('username').value.trim();
+  const p = document.getElementById('password').value.trim();
+
+  if(!u || !p) {
+    notify('⚠️ Vui lòng nhập đầy đủ Tên đăng nhập và Mật khẩu!');
+    return;
+  }
+
+  let db = JSON.parse(localStorage.getItem('nab_web_db') || '{}');
+  if(db[u]) {
+    notify('❌ Tên đăng nhập này đã tồn tại!');
+    return;
+  }
+
+  // Tạo tài khoản mới tặng sẵn 100.000 xu dùng thử
+  const newUser = { username: u, password: p, coins: 100000, orders: 0 };
+  db[u] = newUser;
+  localStorage.setItem('nab_web_db', JSON.stringify(db));
+  localStorage.setItem('nab_web_user', JSON.stringify(newUser));
+
+  notify('🎉 Đăng ký thành công! Đã tặng 100.000 xu trải nghiệm.');
+  checkAccount();
+}
+
+function handleLogin() {
+  const u = document.getElementById('username').value.trim();
+  const p = document.getElementById('password').value.trim();
+
+  let db = JSON.parse(localStorage.getItem('nab_web_db') || '{}');
+  if(!db[u] || db[u].password !== p) {
+    notify('❌ Sai tên đăng nhập hoặc mật khẩu!');
+    return;
+  }
+
+  localStorage.setItem('nab_web_user', JSON.stringify(db[u]));
+  notify(`🎉 Xin chào trở lại, ${u}!`);
+  checkAccount();
 }
 
 function logout() {
-  localStorage.removeItem('nab_discord_user');
+  localStorage.removeItem('nab_web_user');
   notify('Đã đăng xuất tài khoản! 👋');
-  checkLoginStatus();
+  checkAccount();
 }
 
-function checkLoginStatus() {
-  const userStr = localStorage.getItem('nab_discord_user');
-  const accountActions = document.getElementById('account-actions');
-  const subtitle = document.getElementById('account-subtitle');
+function checkAccount() {
+  const userStr = localStorage.getItem('nab_web_user');
+  const container = document.getElementById('account-card-content');
 
   if(userStr) {
     const user = JSON.parse(userStr);
-    subtitle.textContent = 'Xin chào, ' + user.name + '!';
-    document.getElementById('user-coins').textContent = user.coins.toLocaleString() + ' xu';
-    document.getElementById('user-orders').textContent = user.orders;
-    document.getElementById('user-id').textContent = user.id;
-    accountActions.innerHTML = '<button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>';
+    container.innerHTML = `
+      <div class="stats-grid">
+        <div class="stat-box">
+          <h3>${user.coins.toLocaleString()}</h3>
+          <p>Số Xu Hiện Có</p>
+        </div>
+        <div class="stat-box">
+          <h3>${user.orders}</h3>
+          <p>Đơn Hàng Đã Mua</p>
+        </div>
+        <div class="stat-box">
+          <h3 style="font-size:20px; margin-top:5px; color:#fff">${user.username}</h3>
+          <p>Tài Khoản Web</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:25px">
+        <button class="btn btn-secondary" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
+      </div>
+    `;
   } else {
-    subtitle.textContent = 'Liên kết với Discord để kiểm tra ví Xu.';
-    document.getElementById('user-coins').textContent = '0 xu';
-    document.getElementById('user-orders').textContent = '0';
-    document.getElementById('user-id').textContent = 'Chưa đăng nhập';
-    accountActions.innerHTML = '<button class="btn btn-discord" onclick="loginWithDiscord()">🎮 Đăng nhập bằng Discord</button>';
+    renderAuthForm();
   }
 }
 
-// Khởi chạy khi load trang
+function toggleMenu() {
+  document.getElementById('links').classList.toggle('open');
+}
+
+function notify(text) {
+  const t = document.getElementById('toast');
+  t.textContent = text;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// Khởi chạy
 renderProducts();
-checkLoginStatus();
+checkAccount();
 </script>
 </body>
 </html>
